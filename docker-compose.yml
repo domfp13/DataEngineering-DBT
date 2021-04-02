@@ -1,0 +1,49 @@
+# -*- coding: utf-8 -*-
+# Created by Luis Enrique Fuentes Plata
+
+version: "3.8"
+
+networks:
+  default:
+    driver: bridge
+    name: ${NETWORK_NAME}
+    ipam:
+      driver: default
+      config:
+        - subnet: ${NETWORK_SUBNET}
+
+services:
+
+  # db
+  db:
+    image: postgres:${POSTGRES_VERSION}
+    container_name: db
+    restart: on-failure
+    ports: 
+      - "${POSTGRES_PORT}:5432"
+    environment: 
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB=${POSTGRES_DB}
+    volumes:
+      - ./.postgres/initdb.d:/docker-entrypoint-initdb.d/
+    command: 
+      - postgres
+      - "-c"
+      - "max_connections=150"
+  
+  # dbt runner
+  app:
+    image: dbt-runner:latest
+    container_name: docker-agent
+    environment:
+      - DATABASE_HOST=db
+      - DATABASE_NAME=${POSTGRES_DB}
+      - DATABASE_USERNAME=${POSTGRES_USER}
+      - DATABASE_PASSWORD=${POSTGRES_PASSWORD}
+      - DATABASE_PORT=${POSTGRES_PORT}
+    stdin_open: true
+    tty: true
+    restart: always
+    volumes:
+      - .:/usr/src/app
