@@ -19,13 +19,14 @@ start: ## setup and build containers
 .PHONY: stop
 stop: ## stop and destroy services
 	@ echo "Removing services"
+	docker-compose down && \
 	docker-compose rm -svf
 
 .PHONY: run-code
 run-code: ## This command runs main.py in container
 	@ docker exec -it \
 		docker-agent bash -c " \
-			python /usr/src/app/main.py"
+			python /usr/src/app/pipeline/main.py"
 
 help: ## display this help message
 	@ echo "Please use \`make <target>' where <target> is one of"

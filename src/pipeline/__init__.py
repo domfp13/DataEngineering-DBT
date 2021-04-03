@@ -43,7 +43,7 @@ def load_raw_netflix_titles(file_name:str) -> None:
     import psycopg2.extras
     
     try:
-        df = pd.read_csv(Path(os.getcwd(),'resources', file_name))
+        df = pd.read_csv(Path(os.getcwd(),'pipeline','data', file_name))
         df.rename(columns={'show_id':'show_id', 
                 'type':'show_type', 
                 'title':'title', 

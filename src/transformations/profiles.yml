@@ -1,0 +1,13 @@
+
+default:
+  target: dev # default target
+  outputs:
+    dev:
+      type: postgres
+      host: "{{ env_var('DATABASE_HOST') }}"
+      user: "{{ env_var('DATABASE_USERNAME') }}"
+      pass: "{{ env_var('DATABASE_PASSWORD') }}"
+      port: "{{ env_var('DATABASE_PORT') | as_number }}"
+      dbname: "{{ env_var('DATABASE_NAME') }}"
+      schema: staging
+      threads: 4

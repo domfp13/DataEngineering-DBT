@@ -1,0 +1,9 @@
+version: 2
+
+sources:
+  - name: "{{ var('raw_source_schema') }}"
+    description: "Raw database schema"
+    schema: "{{ var('raw_source_schema') }}"
+    tables:
+      - name: raw_netflix_titles
+        description: "Data in a raw format"

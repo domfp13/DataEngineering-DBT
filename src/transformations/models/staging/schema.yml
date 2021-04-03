@@ -1,0 +1,8 @@
+version: 2
+
+models:
+    - name: stg_netflix_titles
+      description: "A starter dbt model"
+      columns:
+          - name: show_id
+            description: "The primary key for this table"

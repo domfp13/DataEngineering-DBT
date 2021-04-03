@@ -46,4 +46,4 @@ services:
     tty: true
     restart: always
     volumes:
-      - .:/usr/src/app
+      - ./src:/usr/src/app
