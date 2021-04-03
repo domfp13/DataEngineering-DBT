@@ -1,6 +1,3 @@
-# -*- coding: utf-8 -*-
-# Created by Luis Enrique Fuentes Plata
-
 # 1.- Pull official base image
 FROM python:3.7.10-slim-buster
 
