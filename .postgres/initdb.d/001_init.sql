@@ -3,7 +3,6 @@
 
 -- creating schemas
 create schema raw_data;
-create schema staging;
 
 -- Creating tables
 create table raw_data.raw_netflix_titles
@@ -22,32 +21,6 @@ create table raw_data.raw_netflix_titles
 	description text null  
 );
 
+-- Creating stg schema for transformation 
+create schema stg;
 
-
--- create table staging.TECHNOLOGY_CAPABILITY (
--- 	technology_capability_id serial not null primary key, 
--- 	technology_capability_name varchar(50) not null
--- );
-    
--- create table staging.TECHNOLOGY_STACK
--- ( 
---   technology_stack_id serial not null primary key,
---   technology_stack_name varchar(40) not null,
---   technology_capability_id integer not null, 
---   constraint fk_technology_cap_id foreign key (technology_capability_id) REFERENCES staging.TECHNOLOGY_CAPABILITY (technology_capability_id)
--- );
-
--- Inserting data
--- BEGIN;
-
---     INSERT INTO staging.TECHNOLOGY_CAPABILITY (technology_capability_name) 
---      VALUES ('Backend'),('Infrastructure'),('Data');
-    
--- COMMIT;
-
--- BEGIN;
-
---     INSERT INTO staging.TECHNOLOGY_STACK (technology_stack_name, technology_capability_id) 
---      VALUES ('Docker',2),('AWS',2),('Nginx',2);
-    
--- COMMIT;
